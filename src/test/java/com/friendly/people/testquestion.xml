@@ -1,0 +1,35 @@
+<com.friendly.people.PersonQuestion>
+  <answer>
+    <firstName>Karen</firstName>
+    <lastName>Filippelli</lastName>
+    <gender>FEMALE</gender>
+    <imagePath>http://upload.wikimedia.org/wikipedia/en/2/22/TheOffice_Karen.png</imagePath>
+  </answer>
+  <options>
+    <com.friendly.people.Person>
+      <firstName>Erin</firstName>
+      <lastName>Hannon</lastName>
+      <gender reference="../../../answer/gender"/>
+      <imagePath>http://upload.wikimedia.org/wikipedia/en/9/93/Erin_Hannon.jpg</imagePath>
+    </com.friendly.people.Person>
+    <com.friendly.people.Person>
+      <firstName>Angela</firstName>
+      <lastName>Martin</lastName>
+      <gender reference="../../../answer/gender"/>
+      <imagePath>http://upload.wikimedia.org/wikipedia/en/0/0b/Angela_Martin.jpg</imagePath>
+    </com.friendly.people.Person>
+    <com.friendly.people.Person reference="../../answer"/>
+    <com.friendly.people.Person>
+      <firstName>Kelly</firstName>
+      <lastName>Kapoor</lastName>
+      <gender reference="../../../answer/gender"/>
+      <imagePath>http://upload.wikimedia.org/wikipedia/en/8/87/Kellykapoor.png</imagePath>
+    </com.friendly.people.Person>
+    <com.friendly.people.Person>
+      <firstName>Holly</firstName>
+      <lastName>Flax</lastName>
+      <gender reference="../../../answer/gender"/>
+      <imagePath>http://upload.wikimedia.org/wikipedia/en/f/f4/Hollytheoffice.jpg</imagePath>
+    </com.friendly.people.Person>
+  </options>
+</com.friendly.people.PersonQuestion>
