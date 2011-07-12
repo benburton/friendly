@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,8 @@ public class Friendly extends JFrame implements QuestionAnswerEventListener {
 	private static final String PROPERTIES_FILE = "friendly.properties";
 	private static final int PAUSE_AFTER_ANSWER = 3;
 
+	private static Properties properties;
+
 	private boolean useLocal;
 
 	public Friendly() {
@@ -44,16 +47,19 @@ public class Friendly extends JFrame implements QuestionAnswerEventListener {
 	}
 
 	public static String getProperty(String key) {
-		Properties properties = new Properties();
-		try {
-			URL url = ClassLoader.getSystemResource(PROPERTIES_FILE);
-			if (url != null) {
-				properties.load(url.openStream());
+		if (properties == null) {
+			properties = new Properties();
+			try {
+				URL url = ClassLoader.getSystemResource(PROPERTIES_FILE);
+				if (url != null) {
+					properties.load(url.openStream());
+				}
+				properties.load(new FileInputStream(PROPERTIES_FILE));
+			} catch (FileNotFoundException e) {
+				throw new RuntimeException(e);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 		return properties.getProperty(key);
 	}
