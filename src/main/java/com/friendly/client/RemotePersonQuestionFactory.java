@@ -22,7 +22,17 @@ import com.thoughtworks.xstream.XStream;
  */
 public class RemotePersonQuestionFactory {
 
-	public static PersonQuestion getQuestion() {
+	private final String providerAddress;
+
+	public RemotePersonQuestionFactory() {
+		this.providerAddress = Friendly.getProperty("provider.address");
+	}
+
+	public RemotePersonQuestionFactory(String providerAddress) {
+		this.providerAddress = providerAddress;
+	}
+
+	public PersonQuestion getQuestion() {
 		String xml = null;
 		try {
 			xml = getRemoteQuestionXML();
@@ -34,12 +44,12 @@ public class RemotePersonQuestionFactory {
 		return (PersonQuestion) xstream.fromXML(xml);
 	}
 
-	public static String getRemoteQuestionXML() throws Exception {
+	public String getRemoteQuestionXML() throws Exception {
 		BufferedReader in = null;
 		try {
 			HttpClient client = new DefaultHttpClient();
 			HttpGet request = new HttpGet();
-			request.setURI(new URI(Friendly.getProperty("provider.address")));
+			request.setURI(new URI(providerAddress));
 			HttpResponse response = client.execute(request);
 			in = new BufferedReader(new InputStreamReader(response.getEntity()
 					.getContent()));
