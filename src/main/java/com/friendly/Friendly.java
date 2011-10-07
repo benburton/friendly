@@ -75,7 +75,7 @@ public class Friendly extends JFrame implements QuestionAnswerEventListener {
 			PeopleProvider provider = new MockPeopleProvider();
 			return LocalPersonQuestionFactory.getQuestion(provider);
 		}
-		return RemotePersonQuestionFactory.getQuestion();
+		return new RemotePersonQuestionFactory().getQuestion();
 	}
 
 	private void setupFrame() {
